@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="./static/header.svg" alt="SvelteKit Starter for GitHub Pages" width="100%">
+</div>
+
 # SvelteKit Starter for GitHub Pages
 
 A production-ready SvelteKit starter template configured for deployment to GitHub Pages with TypeScript and pnpm.

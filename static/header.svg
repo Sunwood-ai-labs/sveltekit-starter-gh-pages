@@ -1,0 +1,171 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Animated Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06090f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0e1a;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00e6d2;stop-opacity:1">
+        <animate attributeName="stop-color" values="#00e6d2;#00b8aa;#00e6d2" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" style="stop-color:#00d4c0;stop-opacity:1">
+        <animate attributeName="stop-color" values="#00d4c0;#00e6d2;#00d4c0" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#00b8aa;stop-opacity:0.8">
+        <animate attributeName="stop-color" values="#00b8aa;#00e6d2;#00b8aa" dur="8s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
+    <linearGradient id="secondaryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c200e5;stop-opacity:1">
+        <animate attributeName="stop-color" values="#c200e5;#9500b8;#c200e5" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#9500b8;stop-opacity:0.8">
+        <animate attributeName="stop-color" values="#9500b8;#c200e5;#9500b8" dur="8s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
+    <radialGradient id="glowPrimary" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00e6d2;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#00e6d2;stop-opacity:0" />
+    </radialGradient>
+
+    <radialGradient id="glowSecondary" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#c200e5;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#c200e5;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bgGradient)"/>
+
+  <!-- Radial glow effects (background) -->
+  <circle cx="200" cy="200" r="300" fill="url(#glowPrimary)" opacity="0.25">
+    <animate attributeName="r" values="290;310;290" dur="6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.2;0.3;0.2" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1000" cy="200" r="280" fill="url(#glowSecondary)" opacity="0.25">
+    <animate attributeName="r" values="270;290;270" dur="6s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.2;0.3;0.2" dur="6s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Magical Circles (left) -->
+  <g transform="translate(120, 200)" filter="url(#glow)">
+    <circle cx="0" cy="0" r="40" fill="none" stroke="url(#primaryGradient)" stroke-width="2.5">
+      <animate attributeName="r" values="38;43;38" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="28" fill="none" stroke="url(#primaryGradient)" stroke-width="2">
+      <animate attributeName="r" values="26;31;26" dur="5s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="5s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Magical Circles (right) -->
+  <g transform="translate(1080, 200)" filter="url(#glow)">
+    <circle cx="0" cy="0" r="40" fill="none" stroke="url(#secondaryGradient)" stroke-width="2.5">
+      <animate attributeName="r" values="38;43;38" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="28" fill="none" stroke="url(#secondaryGradient)" stroke-width="2">
+      <animate attributeName="r" values="26;31;26" dur="5s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="5s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Main Title -->
+  <text x="600" y="190" font-family="'Space Grotesk', Arial, sans-serif" font-size="72" font-weight="bold" fill="url(#primaryGradient)" text-anchor="middle" filter="url(#glow)" letter-spacing="2">
+    SvelteKit Starter
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="250" font-family="'Space Grotesk', Arial, sans-serif" font-size="32" fill="rgba(255, 255, 255, 0.7)" text-anchor="middle" letter-spacing="1.5">
+    for GitHub Pages
+    <animate attributeName="opacity" values="0.6;0.8;0.6" dur="5s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Energy flow paths -->
+  <g stroke="url(#primaryGradient)" stroke-width="2" fill="none" opacity="0.4">
+    <path d="M200,340 C 400,320 800,360 1000,330">
+      <animate attributeName="d"
+               values="M200,340 C 400,320 800,360 1000,330;
+                      M200,330 C 400,360 800,320 1000,340;
+                      M200,340 C 400,320 800,360 1000,330"
+               dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M250,310 C 500,350 700,310 950,340" opacity="0.3">
+      <animate attributeName="d"
+               values="M250,310 C 500,350 700,310 950,340;
+                      M250,340 C 500,310 700,350 950,310;
+                      M250,310 C 500,350 700,310 950,340"
+               dur="8s" begin="2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="6s" begin="1s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Floating geometric shapes -->
+  <g fill="url(#primaryGradient)" filter="url(#glow)">
+    <path d="M220,80 l14,0 l-7,-14 z">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-12; 0,0" dur="4s" repeatCount="indefinite"/>
+    </path>
+    <path d="M980,320 l-14,0 l7,-14 z">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" begin="1s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,12; 0,0" dur="4s" begin="1s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Particle dots -->
+  <circle cx="180" cy="120" r="3.5" fill="#00e6d2" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="2.5;4.5;2.5" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1020" cy="280" r="3.5" fill="#c200e5" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="3.5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="2.5;4.5;2.5" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="350" cy="90" r="2.5" fill="#00e6d2" opacity="0.5">
+    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="850" cy="100" r="3" fill="#c200e5" opacity="0.5">
+    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="280" cy="310" r="2.5" fill="#00e6d2" opacity="0.4">
+    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="920" cy="340" r="3" fill="#c200e5" opacity="0.4">
+    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="5.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Corner brackets -->
+  <path d="M 40 40 L 40 20 L 60 20" stroke="#00e6d2" stroke-width="2.5" fill="none" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/>
+  </path>
+  <path d="M 1160 40 L 1160 20 L 1140 20" stroke="#c200e5" stroke-width="2.5" fill="none" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M 40 360 L 40 380 L 60 380" stroke="#c200e5" stroke-width="2.5" fill="none" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" begin="1s" repeatCount="indefinite"/>
+  </path>
+  <path d="M 1160 360 L 1160 380 L 1140 380" stroke="#00e6d2" stroke-width="2.5" fill="none" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Bottom gradient line -->
+  <rect x="0" y="395" width="1200" height="5" fill="url(#primaryGradient)" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"/>
+  </rect>
+</svg>
