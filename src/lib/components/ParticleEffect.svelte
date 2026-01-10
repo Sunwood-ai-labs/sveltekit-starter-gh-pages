@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
 	// Props for controlling the particle system
 	interface Props {
@@ -20,6 +21,25 @@
 	let ctx: CanvasRenderingContext2D | null;
 	let particles: Particle[] = [];
 	let animationId: number;
+	let isDark = $state(true);
+
+	// Watch for theme changes
+	$effect(() => {
+		if (browser) {
+			const checkTheme = () => {
+				isDark = document.documentElement.classList.contains('dark');
+			};
+			checkTheme();
+
+			const observer = new MutationObserver(checkTheme);
+			observer.observe(document.documentElement, {
+				attributes: true,
+				attributeFilter: ['class']
+			});
+
+			return () => observer.disconnect();
+		}
+	});
 
 	// Reactive values that update when props change
 	$effect(() => {
@@ -29,7 +49,7 @@
 			if (particles.length !== targetCount) {
 				particles = [];
 				for (let i = 0; i < targetCount; i++) {
-					particles.push(new Particle(canvas.width, canvas.height));
+					particles.push(new Particle(canvas.width, canvas.height, isDark));
 				}
 			}
 		}
@@ -44,13 +64,18 @@
 		color: string;
 		opacity: number;
 
-		constructor(width: number, height: number) {
+		constructor(width: number, height: number, isDarkMode: boolean) {
 			this.x = Math.random() * width;
 			this.y = Math.random() * height;
 			this.vx = (Math.random() - 0.5) * 1.5;
 			this.vy = (Math.random() - 0.5) * 1.5;
 			this.size = Math.random() * 3 + 1;
-			this.color = Math.random() > 0.5 ? '#00e6d2' : '#C200E5';
+			// Use theme-appropriate colors
+			if (isDarkMode) {
+				this.color = Math.random() > 0.5 ? '#00e6d2' : '#C200E5';
+			} else {
+				this.color = Math.random() > 0.5 ? '#4F9D9C' : '#A78BFA';
+			}
 			this.opacity = Math.random() * 0.5 + 0.3;
 		}
 
@@ -60,6 +85,16 @@
 
 			if (this.x < 0 || this.x > width) this.vx *= -1;
 			if (this.y < 0 || this.y > height) this.vy *= -1;
+		}
+
+		updateColor(isDarkMode: boolean) {
+			if (isDarkMode) {
+				this.color = this.color === '#4F9D9C' ? '#00e6d2' :
+				             this.color === '#A78BFA' ? '#C200E5' : this.color;
+			} else {
+				this.color = this.color === '#00e6d2' ? '#4F9D9C' :
+				             this.color === '#C200E5' ? '#A78BFA' : this.color;
+			}
 		}
 
 		draw(ctx: CanvasRenderingContext2D) {
@@ -92,7 +127,7 @@
 		particles = [];
 		const particleCount = Math.floor(complexity);
 		for (let i = 0; i < particleCount; i++) {
-			particles.push(new Particle(canvas.width, canvas.height));
+			particles.push(new Particle(canvas.width, canvas.height, isDark));
 		}
 
 		animate();
@@ -104,6 +139,7 @@
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		particles.forEach((particle, i) => {
+			particle.updateColor(isDark);
 			particle.update(canvas.width, canvas.height);
 			particle.draw(ctx!);
 
