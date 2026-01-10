@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import Counter from '$lib/components/Counter.svelte';
 	import ParticleEffect from '$lib/components/ParticleEffect.svelte';
+	import EngineDashboard from '$lib/components/EngineDashboard.svelte';
 </script>
 
 <svelte:head>
@@ -66,50 +67,7 @@
 
 		<section class="max-w-7xl mx-auto grid grid-cols-12 gap-6">
 			<div class="col-span-12 lg:col-span-3 space-y-6">
-				<div class="glass-card rounded-2xl p-6 border-white/5 relative overflow-hidden group">
-					<div class="absolute top-0 right-0 p-2 opacity-20">
-						<span class="material-symbols-outlined text-4xl">tune</span>
-					</div>
-					<h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-6 flex items-center gap-2">
-						Engine Dashboard
-					</h3>
-					<div class="space-y-8">
-						<div class="space-y-3">
-							<div class="flex justify-between items-center">
-								<span class="text-xs font-medium text-white/60 uppercase">Complexity</span>
-								<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">8.5k</span>
-							</div>
-							<div class="h-1 w-full bg-white/5 rounded-full relative">
-								<div class="absolute h-full w-[85%] bg-primary rounded-full neon-glow-primary"></div>
-								<div class="absolute -top-1.5 left-[85%] size-4 bg-background-dark border-2 border-primary rounded-full"></div>
-							</div>
-						</div>
-						<div class="space-y-3">
-							<div class="flex justify-between items-center">
-								<span class="text-xs font-medium text-white/60 uppercase">Attraction</span>
-								<span class="text-xs font-mono text-secondary bg-secondary/10 px-2 py-0.5 rounded">0.42v</span>
-							</div>
-							<div class="h-1 w-full bg-white/5 rounded-full relative">
-								<div class="absolute h-full w-[42%] bg-secondary rounded-full neon-glow-secondary"></div>
-								<div class="absolute -top-1.5 left-[42%] size-4 bg-background-dark border-2 border-secondary rounded-full"></div>
-							</div>
-						</div>
-						<div class="pt-4 space-y-3">
-							<div class="flex items-center justify-between">
-								<span class="text-xs text-white/60 font-medium uppercase">Collision Mesh</span>
-								<div class="w-10 h-5 bg-primary/20 rounded-full relative cursor-pointer border border-primary/30">
-									<div class="absolute top-0.5 left-0.5 w-4 h-[14px] bg-primary rounded-full shadow-[0_0_8px_rgba(0,230,210,0.8)]"></div>
-								</div>
-							</div>
-							<div class="flex items-center justify-between">
-								<span class="text-xs text-white/60 font-medium uppercase">Bloom Effect</span>
-								<div class="w-10 h-5 bg-white/5 rounded-full relative cursor-pointer border border-white/10">
-									<div class="absolute top-0.5 left-5 w-4 h-[14px] bg-white/20 rounded-full"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<EngineDashboard />
 
 				<div class="glass-card rounded-2xl p-6 border-white/5">
 					<div class="flex items-center justify-between mb-4">
