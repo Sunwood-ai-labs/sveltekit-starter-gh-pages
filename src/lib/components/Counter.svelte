@@ -28,15 +28,17 @@
 
 <style>
 	.counter {
-		padding: 1.5rem;
-		background: white;
-		border-radius: 8px;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		padding: 0;
+		background: transparent;
 	}
 
 	h3 {
 		margin-top: 0;
-		color: #333;
+		margin-bottom: 1.5rem;
+		color: white;
+		font-size: 1rem;
+		font-weight: 600;
+		text-align: center;
 	}
 
 	.display {
@@ -47,7 +49,8 @@
 	.count {
 		font-size: 3rem;
 		font-weight: bold;
-		color: #ff3e00;
+		color: #00e6d2;
+		text-shadow: 0 0 20px rgba(0, 230, 210, 0.3);
 	}
 
 	.buttons {
@@ -59,17 +62,20 @@
 	button {
 		padding: 0.75rem 1.5rem;
 		font-size: 1.2rem;
-		background: #ff3e00;
-		color: white;
-		border: none;
-		border-radius: 4px;
+		background: rgba(0, 230, 210, 0.1);
+		color: #00e6d2;
+		border: 1px solid rgba(0, 230, 210, 0.3);
+		border-radius: 8px;
 		cursor: pointer;
 		transition: all 0.2s;
+		font-weight: 600;
 	}
 
 	button:hover {
-		background: #cc3200;
+		background: rgba(0, 230, 210, 0.2);
+		border-color: rgba(0, 230, 210, 0.5);
 		transform: scale(1.05);
+		box-shadow: 0 0 15px rgba(0, 230, 210, 0.3);
 	}
 
 	button:active {

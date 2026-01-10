@@ -42,15 +42,17 @@
 
 <style>
 	.path-display {
-		padding: 1.5rem;
-		background: white;
-		border-radius: 8px;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		padding: 0;
+		background: transparent;
 	}
 
 	h3 {
 		margin-top: 0;
-		color: #333;
+		margin-bottom: 1.5rem;
+		color: white;
+		font-size: 1rem;
+		font-weight: 600;
+		text-align: center;
 	}
 
 	.info-grid {
@@ -67,43 +69,49 @@
 	}
 
 	strong {
-		color: #666;
+		color: rgba(255, 255, 255, 0.6);
 		font-size: 0.9rem;
+		font-weight: 500;
 	}
 
 	code {
-		background: #f0f0f0;
+		background: rgba(255, 255, 255, 0.05);
 		padding: 0.5rem;
 		border-radius: 4px;
-		font-family: 'Courier New', monospace;
-		font-size: 0.9rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.85rem;
 		word-break: break-all;
+		color: rgba(255, 255, 255, 0.7);
+		border: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.url {
-		font-size: 0.8rem;
+		font-size: 0.75rem;
 	}
 
 	.status {
-		margin-top: 1rem;
-		padding-top: 1rem;
-		border-top: 1px solid #e0e0e0;
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.badge {
 		display: inline-block;
 		padding: 0.5rem 1rem;
-		border-radius: 4px;
+		border-radius: 6px;
 		font-weight: 500;
+		font-size: 0.85rem;
 	}
 
 	.success {
-		background: #d4edda;
-		color: #155724;
+		background: rgba(0, 230, 210, 0.1);
+		color: #00e6d2;
+		border: 1px solid rgba(0, 230, 210, 0.3);
 	}
 
 	.info {
-		background: #d1ecf1;
-		color: #0c5460;
+		background: rgba(194, 0, 229, 0.1);
+		color: #C200E5;
+		border: 1px solid rgba(194, 0, 229, 0.3);
 	}
 </style>
