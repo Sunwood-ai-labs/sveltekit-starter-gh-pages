@@ -44,19 +44,19 @@
 	}
 </script>
 
-<div class="glass-card rounded-2xl p-6 border-white/5 relative overflow-hidden group">
-	<div class="absolute top-0 right-0 p-2 opacity-20">
+<div class="glass-card rounded-2xl p-6 border-theme-subtle relative overflow-hidden group">
+	<div class="absolute top-0 right-0 p-2 opacity-20 text-theme-subtle">
 		<span class="material-symbols-outlined text-4xl">tune</span>
 	</div>
-	<h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-6 flex items-center gap-2">
+	<h3 class="text-sm font-bold uppercase tracking-widest text-theme-primary mb-6 flex items-center gap-2">
 		Engine Dashboard
 	</h3>
 	<div class="space-y-8">
 		<!-- Complexity Slider (Particle Count) -->
 		<div class="space-y-3">
 			<div class="flex justify-between items-center">
-				<span class="text-xs font-medium text-white/60 uppercase">Particle Count</span>
-				<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">
+				<span class="text-xs font-medium text-theme-muted uppercase">Particle Count</span>
+				<span class="text-xs font-mono text-theme-primary bg-theme-primary/10 px-2 py-0.5 rounded">
 					{formatComplexity(complexity)}
 				</span>
 			</div>
@@ -69,7 +69,7 @@
 					class="slider-primary w-full"
 				/>
 			</div>
-			<div class="flex justify-between text-[9px] text-white/30 px-1">
+			<div class="flex justify-between text-[9px] text-theme-subtle px-1">
 				<span>10</span>
 				<span>200</span>
 			</div>
@@ -78,8 +78,8 @@
 		<!-- Attraction Slider (Connection Distance) -->
 		<div class="space-y-3">
 			<div class="flex justify-between items-center">
-				<span class="text-xs font-medium text-white/60 uppercase">Connection Range</span>
-				<span class="text-xs font-mono text-secondary bg-secondary/10 px-2 py-0.5 rounded">
+				<span class="text-xs font-medium text-theme-muted uppercase">Connection Range</span>
+				<span class="text-xs font-mono text-theme-secondary bg-theme-secondary/10 px-2 py-0.5 rounded">
 					{formatAttraction(attraction)}
 				</span>
 			</div>
@@ -92,7 +92,7 @@
 					class="slider-secondary w-full"
 				/>
 			</div>
-			<div class="flex justify-between text-[9px] text-white/30 px-1">
+			<div class="flex justify-between text-[9px] text-theme-subtle px-1">
 				<span>Min</span>
 				<span>Max</span>
 			</div>
@@ -101,7 +101,7 @@
 		<!-- Toggles -->
 		<div class="pt-4 space-y-3">
 			<div class="flex items-center justify-between">
-				<span class="text-xs text-white/60 font-medium uppercase">Collision Mesh</span>
+				<span class="text-xs text-theme-muted font-medium uppercase">Collision Mesh</span>
 				<button
 					onclick={() => collisionMesh = !collisionMesh}
 					class="toggle-switch {collisionMesh ? 'active-primary' : ''}"
@@ -111,7 +111,7 @@
 				</button>
 			</div>
 			<div class="flex items-center justify-between">
-				<span class="text-xs text-white/60 font-medium uppercase">Bloom Effect</span>
+				<span class="text-xs text-theme-muted font-medium uppercase">Bloom Effect</span>
 				<button
 					onclick={() => bloomEffect = !bloomEffect}
 					class="toggle-switch {bloomEffect ? 'active-secondary' : ''}"
@@ -135,7 +135,8 @@
 		cursor: pointer;
 	}
 
-	.slider-primary {
+	/* Dark mode slider */
+	:global(:root.dark) .slider-primary {
 		background: linear-gradient(
 			to right,
 			rgba(0, 230, 210, 0.3) 0%,
@@ -145,7 +146,7 @@
 		);
 	}
 
-	.slider-secondary {
+	:global(:root.dark) .slider-secondary {
 		background: linear-gradient(
 			to right,
 			rgba(194, 0, 229, 0.3) 0%,
@@ -155,13 +156,33 @@
 		);
 	}
 
+	/* Light mode slider */
+	:global(:root.light) .slider-primary {
+		background: linear-gradient(
+			to right,
+			rgba(79, 157, 156, 0.4) 0%,
+			rgba(79, 157, 156, 0.4) var(--value, 85%),
+			rgba(0, 0, 0, 0.08) var(--value, 85%),
+			rgba(0, 0, 0, 0.08) 100%
+		);
+	}
+
+	:global(:root.light) .slider-secondary {
+		background: linear-gradient(
+			to right,
+			rgba(167, 139, 250, 0.4) 0%,
+			rgba(167, 139, 250, 0.4) var(--value, 42%),
+			rgba(0, 0, 0, 0.08) var(--value, 42%),
+			rgba(0, 0, 0, 0.08) 100%
+		);
+	}
+
 	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		appearance: none;
 		width: 16px;
 		height: 16px;
 		border-radius: 50%;
-		background: #06090f;
 		cursor: pointer;
 		border: 2px solid;
 		transition: all 0.2s;
@@ -171,30 +192,65 @@
 		width: 16px;
 		height: 16px;
 		border-radius: 50%;
-		background: #06090f;
 		cursor: pointer;
 		border: 2px solid;
 		transition: all 0.2s;
 	}
 
-	.slider-primary::-webkit-slider-thumb {
+	:global(:root.dark) input[type='range']::-webkit-slider-thumb {
+		background: #06090f;
+	}
+
+	:global(:root.dark) input[type='range']::-moz-range-thumb {
+		background: #06090f;
+	}
+
+	:global(:root.light) input[type='range']::-webkit-slider-thumb {
+		background: white;
+	}
+
+	:global(:root.light) input[type='range']::-moz-range-thumb {
+		background: white;
+	}
+
+	:global(:root.dark) .slider-primary::-webkit-slider-thumb {
 		border-color: #00e6d2;
 		box-shadow: 0 0 8px rgba(0, 230, 210, 0.5);
 	}
 
-	.slider-primary::-moz-range-thumb {
+	:global(:root.dark) .slider-primary::-moz-range-thumb {
 		border-color: #00e6d2;
 		box-shadow: 0 0 8px rgba(0, 230, 210, 0.5);
 	}
 
-	.slider-secondary::-webkit-slider-thumb {
+	:global(:root.light) .slider-primary::-webkit-slider-thumb {
+		border-color: #4F9D9C;
+		box-shadow: 0 2px 6px rgba(79, 157, 156, 0.3);
+	}
+
+	:global(:root.light) .slider-primary::-moz-range-thumb {
+		border-color: #4F9D9C;
+		box-shadow: 0 2px 6px rgba(79, 157, 156, 0.3);
+	}
+
+	:global(:root.dark) .slider-secondary::-webkit-slider-thumb {
 		border-color: #c200e5;
 		box-shadow: 0 0 8px rgba(194, 0, 229, 0.5);
 	}
 
-	.slider-secondary::-moz-range-thumb {
+	:global(:root.dark) .slider-secondary::-moz-range-thumb {
 		border-color: #c200e5;
 		box-shadow: 0 0 8px rgba(194, 0, 229, 0.5);
+	}
+
+	:global(:root.light) .slider-secondary::-webkit-slider-thumb {
+		border-color: #A78BFA;
+		box-shadow: 0 2px 6px rgba(167, 139, 250, 0.3);
+	}
+
+	:global(:root.light) .slider-secondary::-moz-range-thumb {
+		border-color: #A78BFA;
+		box-shadow: 0 2px 6px rgba(167, 139, 250, 0.3);
 	}
 
 	input[type='range']:hover::-webkit-slider-thumb {
@@ -210,11 +266,19 @@
 		position: relative;
 		width: 40px;
 		height: 20px;
-		background: rgba(255, 255, 255, 0.05);
 		border-radius: 10px;
-		border: 1px solid rgba(255, 255, 255, 0.1);
 		cursor: pointer;
 		transition: all 0.3s;
+	}
+
+	:global(:root.dark) .toggle-switch {
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	:global(:root.light) .toggle-switch {
+		background: rgba(0, 0, 0, 0.05);
+		border: 1px solid rgba(0, 0, 0, 0.1);
 	}
 
 	.toggle-thumb {
@@ -223,34 +287,67 @@
 		left: 2px;
 		width: 14px;
 		height: 14px;
-		background: rgba(255, 255, 255, 0.2);
 		border-radius: 50%;
 		transition: all 0.3s;
 	}
 
-	.toggle-switch.active-primary {
+	:global(:root.dark) .toggle-thumb {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	:global(:root.light) .toggle-thumb {
+		background: rgba(0, 0, 0, 0.2);
+	}
+
+	:global(:root.dark) .toggle-switch.active-primary {
 		background: rgba(0, 230, 210, 0.2);
 		border-color: rgba(0, 230, 210, 0.3);
 	}
 
-	.toggle-switch.active-primary .toggle-thumb {
+	:global(:root.light) .toggle-switch.active-primary {
+		background: rgba(79, 157, 156, 0.2);
+		border-color: rgba(79, 157, 156, 0.3);
+	}
+
+	:global(:root.dark) .toggle-switch.active-primary .toggle-thumb {
 		left: 22px;
 		background: #00e6d2;
 		box-shadow: 0 0 8px rgba(0, 230, 210, 0.8);
 	}
 
-	.toggle-switch.active-secondary {
+	:global(:root.light) .toggle-switch.active-primary .toggle-thumb {
+		left: 22px;
+		background: #4F9D9C;
+		box-shadow: 0 2px 6px rgba(79, 157, 156, 0.4);
+	}
+
+	:global(:root.dark) .toggle-switch.active-secondary {
 		background: rgba(194, 0, 229, 0.2);
 		border-color: rgba(194, 0, 229, 0.3);
 	}
 
-	.toggle-switch.active-secondary .toggle-thumb {
+	:global(:root.light) .toggle-switch.active-secondary {
+		background: rgba(167, 139, 250, 0.2);
+		border-color: rgba(167, 139, 250, 0.3);
+	}
+
+	:global(:root.dark) .toggle-switch.active-secondary .toggle-thumb {
 		left: 22px;
 		background: #c200e5;
 		box-shadow: 0 0 8px rgba(194, 0, 229, 0.8);
 	}
 
-	.toggle-switch:hover {
+	:global(:root.light) .toggle-switch.active-secondary .toggle-thumb {
+		left: 22px;
+		background: #A78BFA;
+		box-shadow: 0 2px 6px rgba(167, 139, 250, 0.4);
+	}
+
+	:global(:root.dark) .toggle-switch:hover {
 		border-color: rgba(255, 255, 255, 0.2);
+	}
+
+	:global(:root.light) .toggle-switch:hover {
+		border-color: rgba(0, 0, 0, 0.2);
 	}
 </style>
