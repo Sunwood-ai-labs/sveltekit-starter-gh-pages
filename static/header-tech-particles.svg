@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#05050b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0a0a15;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#05050b;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Radial gradient for glow effects -->
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Particle glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Stronger glow for main particles -->
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bgGradient)"/>
+
+  <!-- Background glow spots -->
+  <circle cx="200" cy="100" r="150" fill="url(#glowGradient)" opacity="0.15"/>
+  <circle cx="900" cy="300" r="200" fill="url(#glowGradient)" opacity="0.1"/>
+  <circle cx="600" cy="200" r="180" fill="url(#glowGradient)" opacity="0.12"/>
+
+  <!-- Connection lines (network pattern) -->
+  <g stroke="#38bdf8" stroke-width="1" opacity="0.2">
+    <!-- Horizontal connections -->
+    <line x1="100" y1="80" x2="280" y2="120"/>
+    <line x1="280" y1="120" x2="450" y2="90"/>
+    <line x1="450" y1="90" x2="620" y2="140"/>
+    <line x1="620" y1="140" x2="780" y2="100"/>
+    <line x1="780" y1="100" x2="950" y2="130"/>
+    <line x1="950" y1="130" x2="1100" y2="95"/>
+
+    <!-- Vertical connections -->
+    <line x1="100" y1="80" x2="150" y2="220"/>
+    <line x1="280" y1="120" x2="320" y2="280"/>
+    <line x1="450" y1="90" x2="480" y2="260"/>
+    <line x1="620" y1="140" x2="640" y2="310"/>
+    <line x1="780" y1="100" x2="810" y2="270"/>
+    <line x1="950" y1="130" x2="980" y2="290"/>
+
+    <!-- Diagonal connections -->
+    <line x1="150" y1="220" x2="320" y2="280"/>
+    <line x1="320" y1="280" x2="480" y2="260"/>
+    <line x1="480" y1="260" x2="640" y2="310"/>
+    <line x1="640" y1="310" x2="810" y2="270"/>
+    <line x1="810" y1="270" x2="980" y2="290"/>
+
+    <!-- Cross connections -->
+    <line x1="100" y1="80" x2="320" y2="280"/>
+    <line x1="280" y1="120" x2="480" y2="260"/>
+    <line x1="450" y1="90" x2="640" y2="310"/>
+    <line x1="620" y1="140" x2="810" y2="270"/>
+    <line x1="780" y1="100" x2="980" y2="290"/>
+  </g>
+
+  <!-- Secondary connection lines (lighter) -->
+  <g stroke="#38bdf8" stroke-width="0.5" opacity="0.1">
+    <line x1="200" y1="150" x2="400" y2="180"/>
+    <line x1="400" y1="180" x2="550" y2="200"/>
+    <line x1="550" y1="200" x2="700" y2="170"/>
+    <line x1="700" y1="170" x2="850" y2="190"/>
+    <line x1="850" y1="190" x2="1000" y2="160"/>
+  </g>
+
+  <!-- Main particles (larger, at connection points) -->
+  <g filter="url(#strongGlow)">
+    <circle cx="100" cy="80" r="3" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="280" cy="120" r="3.5" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="450" cy="90" r="3" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="620" cy="140" r="4" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="780" cy="100" r="3" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="950" cy="130" r="3.5" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="1100" cy="95" r="3" fill="#38bdf8" opacity="0.9"/>
+
+    <circle cx="150" cy="220" r="3.5" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="320" cy="280" r="4" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="480" cy="260" r="3" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="640" cy="310" r="3.5" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="810" cy="270" r="3.5" fill="#38bdf8" opacity="0.9"/>
+    <circle cx="980" cy="290" r="3" fill="#38bdf8" opacity="0.9"/>
+  </g>
+
+  <!-- Secondary particles (smaller, scattered) -->
+  <g filter="url(#glow)">
+    <circle cx="200" cy="150" r="2" fill="#38bdf8" opacity="0.7"/>
+    <circle cx="400" cy="180" r="2.5" fill="#38bdf8" opacity="0.7"/>
+    <circle cx="550" cy="200" r="2" fill="#38bdf8" opacity="0.7"/>
+    <circle cx="700" cy="170" r="2" fill="#38bdf8" opacity="0.7"/>
+    <circle cx="850" cy="190" r="2.5" fill="#38bdf8" opacity="0.7"/>
+    <circle cx="1000" cy="160" r="2" fill="#38bdf8" opacity="0.7"/>
+
+    <!-- Additional scattered particles -->
+    <circle cx="130" cy="140" r="1.5" fill="#38bdf8" opacity="0.6"/>
+    <circle cx="250" cy="200" r="1.5" fill="#38bdf8" opacity="0.6"/>
+    <circle cx="370" cy="130" r="1.5" fill="#38bdf8" opacity="0.6"/>
+    <circle cx="520" cy="170" r="1.5" fill="#38bdf8" opacity="0.6"/>
+    <circle cx="670" cy="230" r="1.5" fill="#38bdf8" opacity="0.6"/>
+    <circle cx="820" cy="180" r="1.5" fill="#38bdf8" opacity="0.6"/>
+    <circle cx="920" cy="210" r="1.5" fill="#38bdf8" opacity="0.6"/>
+    <circle cx="1050" cy="180" r="1.5" fill="#38bdf8" opacity="0.6"/>
+
+    <circle cx="180" cy="310" r="1.5" fill="#38bdf8" opacity="0.5"/>
+    <circle cx="340" cy="340" r="1.5" fill="#38bdf8" opacity="0.5"/>
+    <circle cx="510" cy="320" r="1.5" fill="#38bdf8" opacity="0.5"/>
+    <circle cx="690" cy="350" r="1.5" fill="#38bdf8" opacity="0.5"/>
+    <circle cx="870" cy="330" r="1.5" fill="#38bdf8" opacity="0.5"/>
+    <circle cx="1020" cy="340" r="1.5" fill="#38bdf8" opacity="0.5"/>
+  </g>
+
+  <!-- Accent elements (tech UI elements) -->
+  <g stroke="#38bdf8" fill="none" opacity="0.3">
+    <!-- Corner brackets -->
+    <path d="M 50 50 L 50 30 L 70 30" stroke-width="2"/>
+    <path d="M 1150 50 L 1150 30 L 1130 30" stroke-width="2"/>
+    <path d="M 50 350 L 50 370 L 70 370" stroke-width="2"/>
+    <path d="M 1150 350 L 1150 370 L 1130 370" stroke-width="2"/>
+
+    <!-- Grid lines (subtle) -->
+    <line x1="0" y1="100" x2="100" y2="100" stroke-width="0.5" opacity="0.5"/>
+    <line x1="1100" y1="300" x2="1200" y2="300" stroke-width="0.5" opacity="0.5"/>
+  </g>
+
+  <!-- Top badge/label area -->
+  <g>
+    <rect x="480" y="120" width="240" height="32" rx="16"
+          fill="rgba(56, 189, 248, 0.05)"
+          stroke="#38bdf8"
+          stroke-width="1"
+          opacity="0.6"/>
+    <text x="600" y="142"
+          font-family="'Playfair Display', 'Georgia', serif"
+          font-size="11"
+          font-weight="400"
+          font-style="italic"
+          text-anchor="middle"
+          fill="#38bdf8"
+          opacity="0.9"
+          letter-spacing="3">Performance v2.0</text>
+  </g>
+
+  <!-- Main title (single line, vertically centered) -->
+  <text x="600" y="215"
+        font-family="'Cormorant Garamond', 'Playfair Display', 'Georgia', serif"
+        font-size="64"
+        font-weight="300"
+        text-anchor="middle"
+        fill="url(#titleGradient)"
+        letter-spacing="2">
+    SvelteKit Starter GH Pages
+  </text>
+
+  <defs>
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e2e8f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#94a3b8;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Description text -->
+  <text x="600" y="255"
+        font-family="'Crimson Text', 'Georgia', serif"
+        font-size="15"
+        font-weight="400"
+        font-style="italic"
+        text-anchor="middle"
+        fill="#94a3b8"
+        letter-spacing="1">
+    High-performance static site deployed on GitHub Pages
+  </text>
+
+  <!-- Tech specs footer -->
+  <g font-family="'Crimson Text', 'Georgia', serif" font-size="11" fill="#475569">
+    <!-- Status dots -->
+    <circle cx="420" cy="345" r="3" fill="#10b981" opacity="0.8" filter="url(#glow)"/>
+    <circle cx="570" cy="345" r="3" fill="#10b981" opacity="0.8" filter="url(#glow)"/>
+    <circle cx="720" cy="345" r="3" fill="#10b981" opacity="0.8" filter="url(#glow)"/>
+
+    <!-- Spec labels -->
+    <text x="430" y="350" fill="#64748b" font-style="italic" letter-spacing="1">SVG Optimized</text>
+    <text x="580" y="350" fill="#64748b" font-style="italic" letter-spacing="1">Responsive</text>
+    <text x="730" y="350" fill="#64748b" font-style="italic" letter-spacing="1">SvelteKit</text>
+  </g>
+</svg>
