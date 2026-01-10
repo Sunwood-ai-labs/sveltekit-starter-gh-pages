@@ -1,146 +1,239 @@
 <script>
 	import { base } from '$app/paths';
 	import Counter from '$lib/components/Counter.svelte';
+	import ParticleEffect from '$lib/components/ParticleEffect.svelte';
 </script>
 
 <svelte:head>
-	<title>SvelteKit Starter - GitHub Pages</title>
+	<title>SvelteKit Starter GH Pages Demo</title>
 	<meta name="description" content="SvelteKit starter template configured for GitHub Pages deployment" />
 </svelte:head>
 
-<div class="container">
-	<header>
-		<h1>SvelteKit Starter for GitHub Pages</h1>
-		<p class="subtitle">A production-ready template with TypeScript and pnpm</p>
+<div class="fixed inset-0 particle-container z-0">
+	<ParticleEffect />
+	<div class="absolute inset-0 opacity-30">
+		<div class="absolute top-[15%] left-[10%] w-1 h-1 bg-primary rounded-full neon-glow-primary"></div>
+		<div class="absolute top-[45%] left-[25%] w-2 h-2 bg-secondary rounded-full neon-glow-secondary blur-[1px]"></div>
+		<div class="absolute top-[80%] left-[15%] w-1.5 h-1.5 bg-primary rounded-full opacity-60"></div>
+		<div class="absolute top-[25%] right-[20%] w-1 h-1 bg-primary rounded-full neon-glow-primary"></div>
+		<div class="absolute top-[60%] right-[30%] w-2 h-2 bg-secondary rounded-full opacity-40"></div>
+		<div class="absolute top-[10%] left-[50%] w-1 h-1 bg-white/20 rounded-full"></div>
+	</div>
+</div>
+
+<div class="relative z-10 flex flex-col h-screen overflow-hidden">
+	<header class="glass-card border-t-0 border-x-0 h-20 flex items-center justify-between px-8">
+		<div class="flex items-center gap-8">
+			<div class="flex items-center gap-2 group cursor-pointer">
+				<div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center neon-glow-primary group-hover:scale-105 transition-transform">
+					<span class="material-symbols-outlined text-white font-bold">bolt</span>
+				</div>
+				<span class="text-xl font-bold tracking-tight">SVELTE<span class="text-primary">CORE</span></span>
+			</div>
+			<nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide uppercase">
+				<a class="nav-item-active hover:text-primary transition-colors" href="{base}/">Particles</a>
+				<a class="text-white/60 hover:text-white transition-colors" href="{base}/about/">About</a>
+				<a class="text-white/60 hover:text-white transition-colors" href="{base}/demo/">Demo</a>
+			</nav>
+		</div>
+		<div class="flex items-center gap-4">
+			<div class="flex items-center gap-2 px-3 py-1.5 glass-card rounded-full text-[10px] font-mono border-white/10">
+				<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+				<span class="text-white/60">NODE_VERSION:</span>
+				<span class="text-primary font-bold tracking-tighter">v4.2.0-STABLE</span>
+			</div>
+			<button class="bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary px-4 py-2 rounded-lg text-xs font-bold uppercase transition-all flex items-center gap-2">
+				<span class="material-symbols-outlined text-sm">rocket_launch</span>
+				Deploy
+			</button>
+		</div>
 	</header>
 
-	<main>
-		<section class="intro">
-			<h2>Welcome!</h2>
-			<p>
-				This is a SvelteKit starter project configured for deployment to GitHub Pages.
-				It demonstrates proper base path configuration and static site generation.
+	<main class="flex-1 overflow-y-auto p-8 space-y-12">
+		<section class="max-w-7xl mx-auto flex flex-col items-center text-center">
+			<div class="mb-4 inline-flex items-center gap-2 px-4 py-1 rounded-full glass-card text-xs font-semibold text-secondary uppercase tracking-[0.2em] border-secondary/20">
+				<span class="material-symbols-outlined text-xs">auto_awesome</span>
+				Performance Demo v2.0
+			</div>
+			<h1 class="text-6xl md:text-8xl font-serif italic font-light tracking-tight mb-6 bg-gradient-to-r from-white via-white/80 to-white/40 bg-clip-text text-transparent">
+				SvelteKit Starter GH Pages
+			</h1>
+			<p class="max-w-2xl text-lg text-white/50 font-light leading-relaxed">
+				A high-performance animation playground showcasing the sub-millisecond reactivity of SvelteKit
+				deployed on modern infrastructure. Optimized for 120Hz displays.
 			</p>
 		</section>
 
-		<section class="demo">
-			<h2>Demo Component</h2>
-			<Counter />
-		</section>
+		<section class="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+			<div class="col-span-12 lg:col-span-3 space-y-6">
+				<div class="glass-card rounded-2xl p-6 border-white/5 relative overflow-hidden group">
+					<div class="absolute top-0 right-0 p-2 opacity-20">
+						<span class="material-symbols-outlined text-4xl">tune</span>
+					</div>
+					<h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-6 flex items-center gap-2">
+						Engine Dashboard
+					</h3>
+					<div class="space-y-8">
+						<div class="space-y-3">
+							<div class="flex justify-between items-center">
+								<span class="text-xs font-medium text-white/60 uppercase">Complexity</span>
+								<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">8.5k</span>
+							</div>
+							<div class="h-1 w-full bg-white/5 rounded-full relative">
+								<div class="absolute h-full w-[85%] bg-primary rounded-full neon-glow-primary"></div>
+								<div class="absolute -top-1.5 left-[85%] size-4 bg-background-dark border-2 border-primary rounded-full"></div>
+							</div>
+						</div>
+						<div class="space-y-3">
+							<div class="flex justify-between items-center">
+								<span class="text-xs font-medium text-white/60 uppercase">Attraction</span>
+								<span class="text-xs font-mono text-secondary bg-secondary/10 px-2 py-0.5 rounded">0.42v</span>
+							</div>
+							<div class="h-1 w-full bg-white/5 rounded-full relative">
+								<div class="absolute h-full w-[42%] bg-secondary rounded-full neon-glow-secondary"></div>
+								<div class="absolute -top-1.5 left-[42%] size-4 bg-background-dark border-2 border-secondary rounded-full"></div>
+							</div>
+						</div>
+						<div class="pt-4 space-y-3">
+							<div class="flex items-center justify-between">
+								<span class="text-xs text-white/60 font-medium uppercase">Collision Mesh</span>
+								<div class="w-10 h-5 bg-primary/20 rounded-full relative cursor-pointer border border-primary/30">
+									<div class="absolute top-0.5 left-0.5 w-4 h-[14px] bg-primary rounded-full shadow-[0_0_8px_rgba(0,230,210,0.8)]"></div>
+								</div>
+							</div>
+							<div class="flex items-center justify-between">
+								<span class="text-xs text-white/60 font-medium uppercase">Bloom Effect</span>
+								<div class="w-10 h-5 bg-white/5 rounded-full relative cursor-pointer border border-white/10">
+									<div class="absolute top-0.5 left-5 w-4 h-[14px] bg-white/20 rounded-full"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-		<section class="features">
-			<h2>Features</h2>
-			<ul>
-				<li>✅ SvelteKit with TypeScript</li>
-				<li>✅ Static site generation with adapter-static</li>
-				<li>✅ GitHub Actions workflow for automatic deployment</li>
-				<li>✅ Base path configuration for subdirectory hosting</li>
-				<li>✅ pnpm package manager</li>
-				<li>✅ Modern Svelte 5 with runes</li>
-			</ul>
-		</section>
+				<div class="glass-card rounded-2xl p-6 border-white/5">
+					<div class="flex items-center justify-between mb-4">
+						<h3 class="text-xs font-bold uppercase tracking-widest text-white/40">Real-time Metrics</h3>
+						<span class="material-symbols-outlined text-xs text-primary">analytics</span>
+					</div>
+					<div class="grid grid-cols-2 gap-4">
+						<div class="bg-white/5 rounded-xl p-3 border border-white/5">
+							<p class="text-[10px] text-white/40 uppercase mb-1">FPS</p>
+							<p class="text-2xl font-bold text-primary">120</p>
+						</div>
+						<div class="bg-white/5 rounded-xl p-3 border border-white/5">
+							<p class="text-[10px] text-white/40 uppercase mb-1">Jank</p>
+							<p class="text-2xl font-bold text-white/80">0.2<span class="text-xs font-normal ml-0.5 text-white/30">ms</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-		<section class="navigation">
-			<h2>Navigation Demo</h2>
-			<p>Base path is correctly configured: <code>{base || '/'}</code></p>
-			<nav>
-				<a href="{base}/">Home</a>
-				<a href="{base}/about/">About</a>
-				<a href="{base}/demo/">Demo</a>
-			</nav>
+			<div class="col-span-12 lg:col-span-6 flex flex-col gap-6">
+				<div class="glass-card rounded-2xl border-white/10 flex-1 relative min-h-[400px] overflow-hidden">
+					<div class="absolute inset-0 flex items-center justify-center">
+						<div class="relative w-full h-full p-8 flex items-end justify-between">
+							<div class="space-y-2">
+								<div class="flex items-center gap-2">
+									<span class="px-2 py-0.5 rounded bg-primary text-background-dark text-[10px] font-bold">LIVE</span>
+									<span class="text-xs font-mono text-white/40">Viewport_01.render</span>
+								</div>
+								<div class="flex -space-x-2">
+									<div class="size-6 rounded-full border border-background-dark bg-primary/40"></div>
+									<div class="size-6 rounded-full border border-background-dark bg-secondary/40"></div>
+									<div class="size-6 rounded-full border border-background-dark bg-white/20"></div>
+									<div class="size-6 rounded-full border border-background-dark bg-white/10 flex items-center justify-center text-[8px]">+12</div>
+								</div>
+							</div>
+							<div class="flex gap-2">
+								<button class="size-10 glass-card rounded-full flex items-center justify-center text-white/60 hover:text-primary hover:border-primary/50 transition-all">
+									<span class="material-symbols-outlined text-xl">fullscreen</span>
+								</button>
+								<button class="size-10 glass-card rounded-full flex items-center justify-center text-white/60 hover:text-secondary hover:border-secondary/50 transition-all">
+									<span class="material-symbols-outlined text-xl">settings_input_component</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="glass-card rounded-2xl overflow-hidden border-white/5">
+					<div class="terminal-header px-4 py-2 flex items-center justify-between">
+						<div class="flex gap-1.5">
+							<div class="size-3 rounded-full bg-red-500/50"></div>
+							<div class="size-3 rounded-full bg-yellow-500/50"></div>
+							<div class="size-3 rounded-full bg-green-500/50"></div>
+						</div>
+						<div class="text-[10px] font-mono text-white/30 tracking-widest uppercase">src/lib/ParticleSystem.svelte</div>
+						<div class="flex gap-4">
+							<span class="material-symbols-outlined text-sm text-white/20">content_copy</span>
+							<span class="material-symbols-outlined text-sm text-white/20">terminal</span>
+						</div>
+					</div>
+					<div class="p-4 font-mono text-xs leading-relaxed overflow-x-auto">
+						<pre><span class="text-secondary italic">script:</span>
+  <span class="text-white/40">import &#123; onMount &#125; from 'svelte';</span>
+  <span class="text-white/40">import &#123; spring &#125; from 'svelte/motion';</span>
+  <span class="text-primary">export let density = 2500;</span>
+  <span class="text-white/80">let canvas;</span>
+  <span class="text-white/40">onMount(() =&gt; &#123;</span>
+    <span class="text-white/60">const ctx = canvas.getContext('2d');</span>
+    <span class="text-white/60">// Highly optimized render loop</span>
+    <span class="text-primary">requestAnimationFrame(render);</span>
+  <span class="text-white/40">&#125;);</span></pre>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-span-12 lg:col-span-3 space-y-6">
+				<h3 class="text-xs font-bold uppercase tracking-widest text-white/30 ml-2">Key Advantages</h3>
+
+				<div class="glass-card glass-card-hover rounded-2xl p-5 border-white/5 transition-all group">
+					<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4 group-hover:neon-glow-primary transition-all">
+						<span class="material-symbols-outlined">speed</span>
+					</div>
+					<h4 class="text-sm font-bold mb-2">Zero Runtime overhead</h4>
+					<p class="text-xs text-white/40 leading-relaxed">Svelte compiles your animations to highly efficient vanilla JS with no virtual DOM diffing.</p>
+				</div>
+
+				<div class="glass-card glass-card-hover rounded-2xl p-5 border-white/5 transition-all group">
+					<div class="size-10 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary mb-4 group-hover:neon-glow-secondary transition-all">
+						<span class="material-symbols-outlined">auto_graph</span>
+					</div>
+					<h4 class="text-sm font-bold mb-2">Native Transitions</h4>
+					<p class="text-xs text-white/40 leading-relaxed">Built-in spring and tween motions for fluid, physics-based interactions at 144fps.</p>
+				</div>
+
+				<div class="glass-card glass-card-hover rounded-2xl p-5 border-white/5 transition-all group">
+					<div class="size-10 bg-white/10 rounded-lg flex items-center justify-center text-white mb-4 transition-all">
+						<span class="material-symbols-outlined">cloud_done</span>
+					</div>
+					<h4 class="text-sm font-bold mb-2">Edge Optimized</h4>
+					<p class="text-xs text-white/40 leading-relaxed">Pre-rendered static assets served from GitHub Pages with global CDN propagation.</p>
+				</div>
+
+				<div class="mt-8 p-4 glass-card border-white/5 rounded-2xl flex items-center gap-4">
+					<div class="relative size-12 flex-shrink-0">
+						<svg class="size-full -rotate-90" viewBox="0 0 36 36">
+							<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3"></path>
+							<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="url(#grad1)" stroke-dasharray="98, 100" stroke-width="3"></path>
+							<defs>
+								<linearGradient id="grad1" x1="0%" x2="100%" y1="0%" y2="0%">
+									<stop offset="0%" style="stop-color:#00e6d2;stop-opacity:1"></stop>
+									<stop offset="100%" style="stop-color:#C200E5;stop-opacity:1"></stop>
+								</linearGradient>
+							</defs>
+						</svg>
+						<div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">98</div>
+					</div>
+					<div>
+						<p class="text-[10px] font-bold uppercase tracking-tighter text-white/40">Performance Score</p>
+						<p class="text-xs font-mono text-primary">Lighthouse Optima</p>
+					</div>
+				</div>
+			</div>
 		</section>
 	</main>
 
-	<footer>
-		<p>
-			Built with SvelteKit • Deployed on GitHub Pages •
-			<a href="https://github.com/Sunwood-ai-labs/sveltekit-starter-gh-pages" target="_blank" rel="noopener">
-				View on GitHub
-			</a>
-		</p>
-	</footer>
+	<footer class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none"></footer>
 </div>
-
-<style>
-	.container {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 2rem;
-		font-family: system-ui, -apple-system, sans-serif;
-	}
-
-	header {
-		text-align: center;
-		margin-bottom: 3rem;
-	}
-
-	h1 {
-		font-size: 2.5rem;
-		color: #ff3e00;
-		margin-bottom: 0.5rem;
-	}
-
-	.subtitle {
-		font-size: 1.2rem;
-		color: #666;
-	}
-
-	section {
-		margin-bottom: 2rem;
-		padding: 1.5rem;
-		background: #f5f5f5;
-		border-radius: 8px;
-	}
-
-	h2 {
-		color: #333;
-		margin-top: 0;
-	}
-
-	ul {
-		list-style-position: inside;
-	}
-
-	li {
-		margin: 0.5rem 0;
-	}
-
-	nav {
-		display: flex;
-		gap: 1rem;
-		margin-top: 1rem;
-		flex-wrap: wrap;
-	}
-
-	nav a {
-		padding: 0.5rem 1rem;
-		background: #ff3e00;
-		color: white;
-		text-decoration: none;
-		border-radius: 4px;
-		transition: background 0.2s;
-	}
-
-	nav a:hover {
-		background: #cc3200;
-	}
-
-	code {
-		background: #e0e0e0;
-		padding: 0.2rem 0.5rem;
-		border-radius: 3px;
-		font-family: 'Courier New', monospace;
-	}
-
-	footer {
-		text-align: center;
-		margin-top: 3rem;
-		padding-top: 2rem;
-		border-top: 1px solid #ddd;
-		color: #666;
-	}
-
-	footer a {
-		color: #ff3e00;
-	}
-</style>
