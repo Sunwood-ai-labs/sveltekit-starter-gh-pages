@@ -1,15 +1,46 @@
 <script lang="ts">
+	interface Props {
+		onComplexityChange?: (value: number) => void;
+		onAttractionChange?: (value: number) => void;
+		onCollisionMeshChange?: (value: boolean) => void;
+		onBloomEffectChange?: (value: boolean) => void;
+	}
+
+	let {
+		onComplexityChange,
+		onAttractionChange,
+		onCollisionMeshChange,
+		onBloomEffectChange
+	}: Props = $props();
+
 	let complexity = $state(85);
 	let attraction = $state(42);
 	let collisionMesh = $state(true);
 	let bloomEffect = $state(false);
 
+	// Notify parent when values change
+	$effect(() => {
+		onComplexityChange?.(complexity);
+	});
+
+	$effect(() => {
+		onAttractionChange?.(attraction);
+	});
+
+	$effect(() => {
+		onCollisionMeshChange?.(collisionMesh);
+	});
+
+	$effect(() => {
+		onBloomEffectChange?.(bloomEffect);
+	});
+
 	function formatComplexity(value: number): string {
-		return `${(value / 10).toFixed(1)}k`;
+		return `${value}`;
 	}
 
 	function formatAttraction(value: number): string {
-		return `${(value / 100).toFixed(2)}v`;
+		return `${value}%`;
 	}
 </script>
 
@@ -21,10 +52,10 @@
 		Engine Dashboard
 	</h3>
 	<div class="space-y-8">
-		<!-- Complexity Slider -->
+		<!-- Complexity Slider (Particle Count) -->
 		<div class="space-y-3">
 			<div class="flex justify-between items-center">
-				<span class="text-xs font-medium text-white/60 uppercase">Complexity</span>
+				<span class="text-xs font-medium text-white/60 uppercase">Particle Count</span>
 				<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">
 					{formatComplexity(complexity)}
 				</span>
@@ -33,17 +64,21 @@
 				<input
 					type="range"
 					min="10"
-					max="100"
+					max="200"
 					bind:value={complexity}
 					class="slider-primary w-full"
 				/>
 			</div>
+			<div class="flex justify-between text-[9px] text-white/30 px-1">
+				<span>10</span>
+				<span>200</span>
+			</div>
 		</div>
 
-		<!-- Attraction Slider -->
+		<!-- Attraction Slider (Connection Distance) -->
 		<div class="space-y-3">
 			<div class="flex justify-between items-center">
-				<span class="text-xs font-medium text-white/60 uppercase">Attraction</span>
+				<span class="text-xs font-medium text-white/60 uppercase">Connection Range</span>
 				<span class="text-xs font-mono text-secondary bg-secondary/10 px-2 py-0.5 rounded">
 					{formatAttraction(attraction)}
 				</span>
@@ -56,6 +91,10 @@
 					bind:value={attraction}
 					class="slider-secondary w-full"
 				/>
+			</div>
+			<div class="flex justify-between text-[9px] text-white/30 px-1">
+				<span>Min</span>
+				<span>Max</span>
 			</div>
 		</div>
 

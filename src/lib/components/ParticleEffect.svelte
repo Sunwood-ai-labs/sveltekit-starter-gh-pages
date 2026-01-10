@@ -1,10 +1,39 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	// Props for controlling the particle system
+	interface Props {
+		complexity?: number;      // 10-200: number of particles
+		attraction?: number;      // 0-100: connection distance multiplier
+		collisionMesh?: boolean;  // show connections between particles
+		bloomEffect?: boolean;    // add glow effect to particles
+	}
+
+	let {
+		complexity = 85,
+		attraction = 42,
+		collisionMesh = true,
+		bloomEffect = false
+	}: Props = $props();
+
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D | null;
 	let particles: Particle[] = [];
 	let animationId: number;
+
+	// Reactive values that update when props change
+	$effect(() => {
+		// Reinitialize particles when complexity changes
+		if (ctx && canvas) {
+			const targetCount = Math.floor(complexity);
+			if (particles.length !== targetCount) {
+				particles = [];
+				for (let i = 0; i < targetCount; i++) {
+					particles.push(new Particle(canvas.width, canvas.height));
+				}
+			}
+		}
+	});
 
 	class Particle {
 		x: number;
@@ -18,11 +47,11 @@
 		constructor(width: number, height: number) {
 			this.x = Math.random() * width;
 			this.y = Math.random() * height;
-			this.vx = (Math.random() - 0.5) * 0.5;
-			this.vy = (Math.random() - 0.5) * 0.5;
-			this.size = Math.random() * 2 + 1;
+			this.vx = (Math.random() - 0.5) * 1.5;
+			this.vy = (Math.random() - 0.5) * 1.5;
+			this.size = Math.random() * 3 + 1;
 			this.color = Math.random() > 0.5 ? '#00e6d2' : '#C200E5';
-			this.opacity = Math.random() * 0.5 + 0.2;
+			this.opacity = Math.random() * 0.5 + 0.3;
 		}
 
 		update(width: number, height: number) {
@@ -38,7 +67,15 @@
 			ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 			ctx.fillStyle = this.color;
 			ctx.globalAlpha = this.opacity;
+
+			// Add bloom effect if enabled
+			if (bloomEffect) {
+				ctx.shadowBlur = 20;
+				ctx.shadowColor = this.color;
+			}
+
 			ctx.fill();
+			ctx.shadowBlur = 0;
 			ctx.globalAlpha = 1;
 		}
 	}
@@ -53,7 +90,8 @@
 		canvas.height = window.innerHeight;
 
 		particles = [];
-		for (let i = 0; i < 50; i++) {
+		const particleCount = Math.floor(complexity);
+		for (let i = 0; i < particleCount; i++) {
 			particles.push(new Particle(canvas.width, canvas.height));
 		}
 
@@ -69,23 +107,37 @@
 			particle.update(canvas.width, canvas.height);
 			particle.draw(ctx!);
 
-			// Draw connections
-			particles.slice(i + 1).forEach(otherParticle => {
-				const dx = particle.x - otherParticle.x;
-				const dy = particle.y - otherParticle.y;
-				const distance = Math.sqrt(dx * dx + dy * dy);
+			// Draw connections if collision mesh is enabled
+			if (collisionMesh) {
+				// Connection distance based on attraction (100-300px range)
+				const maxDistance = 100 + (attraction * 2);
 
-				if (distance < 150) {
-					ctx!.beginPath();
-					ctx!.moveTo(particle.x, particle.y);
-					ctx!.lineTo(otherParticle.x, otherParticle.y);
-					ctx!.strokeStyle = particle.color;
-					ctx!.globalAlpha = (1 - distance / 150) * 0.2;
-					ctx!.lineWidth = 0.5;
-					ctx!.stroke();
-					ctx!.globalAlpha = 1;
-				}
-			});
+				particles.slice(i + 1).forEach(otherParticle => {
+					const dx = particle.x - otherParticle.x;
+					const dy = particle.y - otherParticle.y;
+					const distance = Math.sqrt(dx * dx + dy * dy);
+
+					if (distance < maxDistance) {
+						ctx!.beginPath();
+						ctx!.moveTo(particle.x, particle.y);
+						ctx!.lineTo(otherParticle.x, otherParticle.y);
+						ctx!.strokeStyle = particle.color;
+						const opacity = (1 - distance / maxDistance) * 0.3;
+						ctx!.globalAlpha = opacity;
+						ctx!.lineWidth = bloomEffect ? 1.5 : 0.5;
+
+						// Add glow to lines if bloom is enabled
+						if (bloomEffect) {
+							ctx!.shadowBlur = 10;
+							ctx!.shadowColor = particle.color;
+						}
+
+						ctx!.stroke();
+						ctx!.shadowBlur = 0;
+						ctx!.globalAlpha = 1;
+					}
+				});
+			}
 		});
 
 		animationId = requestAnimationFrame(animate);

@@ -4,6 +4,12 @@
 	import ParticleEffect from '$lib/components/ParticleEffect.svelte';
 	import EngineDashboard from '$lib/components/EngineDashboard.svelte';
 	import PerformanceMonitor from '$lib/components/PerformanceMonitor.svelte';
+
+	// State for particle system controls
+	let complexity = $state(85);
+	let attraction = $state(42);
+	let collisionMesh = $state(true);
+	let bloomEffect = $state(false);
 </script>
 
 <svelte:head>
@@ -12,7 +18,12 @@
 </svelte:head>
 
 <div class="fixed inset-0 particle-container z-0">
-	<ParticleEffect />
+	<ParticleEffect
+		{complexity}
+		{attraction}
+		{collisionMesh}
+		{bloomEffect}
+	/>
 	<div class="absolute inset-0 opacity-30">
 		<div class="absolute top-[15%] left-[10%] w-1 h-1 bg-primary rounded-full neon-glow-primary"></div>
 		<div class="absolute top-[45%] left-[25%] w-2 h-2 bg-secondary rounded-full neon-glow-secondary blur-[1px]"></div>
@@ -68,7 +79,12 @@
 
 		<section class="max-w-7xl mx-auto grid grid-cols-12 gap-6">
 			<div class="col-span-12 lg:col-span-3 space-y-6">
-				<EngineDashboard />
+				<EngineDashboard
+					onComplexityChange={(v) => complexity = v}
+					onAttractionChange={(v) => attraction = v}
+					onCollisionMeshChange={(v) => collisionMesh = v}
+					onBloomEffectChange={(v) => bloomEffect = v}
+				/>
 
 				<div class="glass-card rounded-2xl p-6 border-white/5">
 					<div class="flex items-center justify-between mb-4">
