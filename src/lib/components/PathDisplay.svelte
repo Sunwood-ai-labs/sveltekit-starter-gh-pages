@@ -49,10 +49,17 @@
 	h3 {
 		margin-top: 0;
 		margin-bottom: 1.5rem;
-		color: white;
 		font-size: 1rem;
 		font-weight: 600;
 		text-align: center;
+	}
+
+	:global(:root.dark) h3 {
+		color: white;
+	}
+
+	:global(:root.light) h3 {
+		color: #1E293B;
 	}
 
 	.info-grid {
@@ -69,20 +76,36 @@
 	}
 
 	strong {
-		color: rgba(255, 255, 255, 0.6);
 		font-size: 0.9rem;
 		font-weight: 500;
 	}
 
+	:global(:root.dark) strong {
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	:global(:root.light) strong {
+		color: rgba(30, 41, 59, 0.6);
+	}
+
 	code {
-		background: rgba(255, 255, 255, 0.05);
 		padding: 0.5rem;
 		border-radius: 4px;
 		font-family: 'JetBrains Mono', monospace;
 		font-size: 0.85rem;
 		word-break: break-all;
+	}
+
+	:global(:root.dark) code {
+		background: rgba(255, 255, 255, 0.05);
 		color: rgba(255, 255, 255, 0.7);
 		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	:global(:root.light) code {
+		background: rgba(0, 0, 0, 0.03);
+		color: rgba(30, 41, 59, 0.8);
+		border: 1px solid rgba(0, 0, 0, 0.08);
 	}
 
 	.url {
@@ -92,7 +115,14 @@
 	.status {
 		margin-top: 1.5rem;
 		padding-top: 1.5rem;
+	}
+
+	:global(:root.dark) .status {
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	:global(:root.light) .status {
+		border-top: 1px solid rgba(0, 0, 0, 0.08);
 	}
 
 	.badge {
@@ -103,15 +133,27 @@
 		font-size: 0.85rem;
 	}
 
-	.success {
+	:global(:root.dark) .success {
 		background: rgba(0, 230, 210, 0.1);
 		color: #00e6d2;
 		border: 1px solid rgba(0, 230, 210, 0.3);
 	}
 
-	.info {
+	:global(:root.light) .success {
+		background: rgba(79, 157, 156, 0.1);
+		color: #4F9D9C;
+		border: 1px solid rgba(79, 157, 156, 0.3);
+	}
+
+	:global(:root.dark) .info {
 		background: rgba(194, 0, 229, 0.1);
 		color: #C200E5;
 		border: 1px solid rgba(194, 0, 229, 0.3);
+	}
+
+	:global(:root.light) .info {
+		background: rgba(167, 139, 250, 0.1);
+		color: #A78BFA;
+		border: 1px solid rgba(167, 139, 250, 0.3);
 	}
 </style>

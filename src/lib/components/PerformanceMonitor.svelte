@@ -55,41 +55,41 @@
 </script>
 
 <div class="grid grid-cols-2 gap-4">
-	<div class="bg-white/5 rounded-xl p-3 border border-primary/20">
+	<div class="bg-theme-card rounded-xl p-3 border border-theme-primary">
 		<div class="flex items-center justify-between mb-1">
-			<p class="text-[10px] text-white/40 uppercase">FPS</p>
-			<span class="material-symbols-outlined text-xs text-primary">speed</span>
+			<p class="text-[10px] text-theme-subtle uppercase">FPS</p>
+			<span class="material-symbols-outlined text-xs text-theme-primary">speed</span>
 		</div>
-		<p class="text-2xl font-bold text-primary">{fps}</p>
-		<p class="text-[8px] text-white/30 mt-1">Frames per second</p>
+		<p class="text-2xl font-bold text-theme-primary">{fps}</p>
+		<p class="text-[8px] text-theme-subtle mt-1">Frames per second</p>
 	</div>
 
-	<div class="bg-white/5 rounded-xl p-3 border border-secondary/20">
+	<div class="bg-theme-card rounded-xl p-3 border border-theme-secondary">
 		<div class="flex items-center justify-between mb-1">
-			<p class="text-[10px] text-white/40 uppercase">Update</p>
-			<span class="material-symbols-outlined text-xs text-secondary">schedule</span>
+			<p class="text-[10px] text-theme-subtle uppercase">Update</p>
+			<span class="material-symbols-outlined text-xs text-theme-secondary">schedule</span>
 		</div>
-		<p class="text-2xl font-bold text-secondary">{renderTime}<span class="text-xs font-normal ml-0.5 text-white/30">ms</span></p>
-		<p class="text-[8px] text-white/30 mt-1">Render time</p>
+		<p class="text-2xl font-bold text-theme-secondary">{renderTime}<span class="text-xs font-normal ml-0.5 text-theme-subtle">ms</span></p>
+		<p class="text-[8px] text-theme-subtle mt-1">Render time</p>
 	</div>
 
-	<div class="bg-white/5 rounded-xl p-3 border border-white/10">
+	<div class="bg-theme-card rounded-xl p-3 border border-theme-muted">
 		<div class="flex items-center justify-between mb-1">
-			<p class="text-[10px] text-white/40 uppercase">Updates</p>
-			<span class="material-symbols-outlined text-xs text-white/40">update</span>
+			<p class="text-[10px] text-theme-subtle uppercase">Updates</p>
+			<span class="material-symbols-outlined text-xs text-theme-subtle">update</span>
 		</div>
-		<p class="text-2xl font-bold text-white/80">{updateCount}</p>
-		<p class="text-[8px] text-white/30 mt-1">State updates</p>
+		<p class="text-2xl font-bold text-theme-muted">{updateCount}</p>
+		<p class="text-[8px] text-theme-subtle mt-1">State updates</p>
 	</div>
 
 	{#if memoryUsage > 0}
-		<div class="bg-white/5 rounded-xl p-3 border border-white/10">
+		<div class="bg-theme-card rounded-xl p-3 border border-theme-muted">
 			<div class="flex items-center justify-between mb-1">
-				<p class="text-[10px] text-white/40 uppercase">Memory</p>
-				<span class="material-symbols-outlined text-xs text-white/40">memory</span>
+				<p class="text-[10px] text-theme-subtle uppercase">Memory</p>
+				<span class="material-symbols-outlined text-xs text-theme-subtle">memory</span>
 			</div>
-			<p class="text-2xl font-bold text-white/80">{memoryUsage}<span class="text-xs font-normal ml-0.5 text-white/30">MB</span></p>
-			<p class="text-[8px] text-white/30 mt-1">Heap usage</p>
+			<p class="text-2xl font-bold text-theme-muted">{memoryUsage}<span class="text-xs font-normal ml-0.5 text-theme-subtle">MB</span></p>
+			<p class="text-[8px] text-theme-subtle mt-1">Heap usage</p>
 		</div>
 	{/if}
 </div>
