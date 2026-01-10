@@ -3,6 +3,7 @@
 	import Counter from '$lib/components/Counter.svelte';
 	import ParticleEffect from '$lib/components/ParticleEffect.svelte';
 	import EngineDashboard from '$lib/components/EngineDashboard.svelte';
+	import PerformanceMonitor from '$lib/components/PerformanceMonitor.svelte';
 </script>
 
 <svelte:head>
@@ -74,16 +75,7 @@
 						<h3 class="text-xs font-bold uppercase tracking-widest text-white/40">Real-time Metrics</h3>
 						<span class="material-symbols-outlined text-xs text-primary">analytics</span>
 					</div>
-					<div class="grid grid-cols-2 gap-4">
-						<div class="bg-white/5 rounded-xl p-3 border border-white/5">
-							<p class="text-[10px] text-white/40 uppercase mb-1">FPS</p>
-							<p class="text-2xl font-bold text-primary">120</p>
-						</div>
-						<div class="bg-white/5 rounded-xl p-3 border border-white/5">
-							<p class="text-[10px] text-white/40 uppercase mb-1">Jank</p>
-							<p class="text-2xl font-bold text-white/80">0.2<span class="text-xs font-normal ml-0.5 text-white/30">ms</span></p>
-						</div>
-					</div>
+					<PerformanceMonitor />
 				</div>
 			</div>
 
