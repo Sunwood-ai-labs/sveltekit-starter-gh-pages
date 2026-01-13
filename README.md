@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./static/header.svg" alt="SvelteKit Starter for GitHub Pages" width="100%">
+  <img src="./docs/static/header.svg" alt="SvelteKit Starter for GitHub Pages" width="100%">
 </div>
 
 # SvelteKit Starter for GitHub Pages
@@ -36,6 +36,7 @@ git clone https://github.com/Sunwood-ai-labs/sveltekit-starter-gh-pages.git
 cd sveltekit-starter-gh-pages
 
 # Install dependencies
+cd docs
 pnpm install
 
 # Start development server
@@ -100,43 +101,47 @@ sveltekit-starter-gh-pages/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml              # GitHub Actions workflow
-├── src/
-│   ├── lib/
-│   │   └── components/             # Reusable components
-│   │       ├── Counter.svelte      # Interactive counter demo
-│   │       ├── PathDisplay.svelte  # Path configuration display
-│   │       ├── ParticleEffect.svelte    # Canvas particle animation
-│   │       ├── EngineDashboard.svelte   # Interactive controls
-│   │       └── PerformanceMonitor.svelte # Real-time metrics
-│   ├── routes/
-│   │   ├── about/                  # About page
-│   │   │   └── +page.svelte
-│   │   ├── demo/                   # Demo page
-│   │   │   └── +page.svelte
-│   │   ├── +error.svelte           # 404 page
-│   │   ├── +layout.js              # Root layout config
-│   │   ├── +layout.svelte          # Global layout with CSS import
-│   │   └── +page.svelte            # Home page with dashboard
-│   ├── app.css                     # Tailwind CSS v4 config & styles
-│   └── app.html                    # HTML template
-├── static/
-│   └── .nojekyll                  # Bypass Jekyll processing
-├── .gitignore
-├── package.json
-├── pnpm-lock.yaml
-├── svelte.config.js               # SvelteKit configuration
-├── tsconfig.json                  # TypeScript configuration
-└── vite.config.ts                 # Vite + Tailwind configuration
+├── docs/                           # SvelteKit project (served as root by GitHub Pages)
+│   ├── src/
+│   │   ├── lib/
+│   │   │   └── components/         # Reusable components
+│   │   │       ├── Counter.svelte      # Interactive counter demo
+│   │   │       ├── PathDisplay.svelte  # Path configuration display
+│   │   │       ├── ParticleEffect.svelte    # Canvas particle animation
+│   │   │       ├── EngineDashboard.svelte   # Interactive controls
+│   │   │       └── PerformanceMonitor.svelte # Real-time metrics
+│   │   ├── routes/
+│   │   │   ├── about/              # About page
+│   │   │   │   └── +page.svelte
+│   │   │   ├── demo/               # Demo page
+│   │   │   │   └── +page.svelte
+│   │   │   ├── +error.svelte       # 404 page
+│   │   │   ├── +layout.js          # Root layout config
+│   │   │   ├── +layout.svelte      # Global layout with CSS import
+│   │   │   └── +page.svelte        # Home page with dashboard
+│   │   ├── app.css                 # Tailwind CSS v4 config & styles
+│   │   └── app.html                # HTML template
+│   ├── static/
+│   │   └── .nojekyll              # Bypass Jekyll processing
+│   ├── .gitignore
+│   ├── package.json
+│   ├── pnpm-lock.yaml
+│   ├── svelte.config.js           # SvelteKit configuration
+│   ├── tsconfig.json              # TypeScript configuration
+│   └── vite.config.ts             # Vite + Tailwind configuration
+└── README.md
 ```
 
 ## Configuration
 
 ### Base Path
 
-The project is configured to work in a subdirectory (`/sveltekit-starter-gh-pages/`) on GitHub Pages:
+The project uses the `docs/` folder structure, which GitHub Pages automatically serves as the root directory. The base path configuration is:
 
 - **Development:** No base path (empty string)
-- **Production:** `/sveltekit-starter-gh-pages/`
+- **Production:** `/sveltekit-starter-gh-pages/` (repository name)
+
+> **Note:** The `docs/` folder is a special GitHub Pages directory that gets served as the site root, so the base path only needs to include the repository name.
 
 All internal links use the `base` import from `$app/paths`:
 
@@ -157,7 +162,7 @@ Uses `@sveltejs/adapter-static` with:
 
 ### Prerendering
 
-All routes are prerendered via `src/routes/+layout.js`:
+All routes are prerendered via `docs/src/routes/+layout.js`:
 
 ```javascript
 export const prerender = true;
@@ -183,7 +188,7 @@ If the GitHub Actions workflow fails:
 ### 404 Errors
 
 If you get 404 errors on GitHub Pages:
-1. Ensure `.nojekyll` file exists in `static/` directory
+1. Ensure `.nojekyll` file exists in `docs/static/` directory
 2. Verify trailing slash is set to `'always'`
 3. Check that `fallback: '404.html'` is configured
 

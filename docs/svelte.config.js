@@ -17,9 +17,10 @@ const config = {
 			strict: true
 		}),
 
-		// Configure base path for GitHub Pages subdirectory
+		// Configure base path for GitHub Pages
+		// Note: docs/ folder is served as root by GitHub Pages
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/sveltekit-starter-gh-pages/docs' : ''
+			base: process.env.NODE_ENV === 'production' ? '/sveltekit-starter-gh-pages' : ''
 		}
 	}
 };
