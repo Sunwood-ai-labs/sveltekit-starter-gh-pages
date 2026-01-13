@@ -19,7 +19,7 @@ const config = {
 
 		// Configure base path for GitHub Pages subdirectory
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/sveltekit-starter-gh-pages' : ''
+			base: process.env.NODE_ENV === 'production' ? '/sveltekit-starter-gh-pages/docs' : ''
 		}
 	}
 };
